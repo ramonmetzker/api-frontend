@@ -1,38 +1,111 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.App-box {
+  max-width: 800px;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-rows: 40px 100px 1fr; */
+  height: 80%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+}
+.App-logo {
+  width: 100%;
+  text-align: center;
+}
+.App-logo img {
+  width: 150px;
+}
+.App-title {
+  color: #89cd23;
+  font-size: 24px;
+  font-weight: 700;
+}
+.App-ListaClientes {
+  height: 100%;
+  max-height: 300px;
+  overflow: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.App-cliente {
+  background: #89cd23;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+}
+.Cliente-info {
+  display: flex;
+  flex-direction: column;
+}
+.Cliente-account {
+  color: #fff;
+}
+.Cliente-email {
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-btn-delete {
+  border-radius: 50px;
+  border: none;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eb2d2d;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.App-btn-delete:hover {
+  background: #eb2d2d;
+  color: #fff;
+}
+
+.App-error {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 50%;
+  background: #e17878;
+  border-radius: 5px;
+  border: 1px solid #eb2d2d;
+  transition: all 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 30px;
+  box-shadow: inset 0 0 14px 14px #89cd23;
+  border: solid 4px transparent;
+  border-top: none;
+  border-bottom: none;
+}
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 14px 14px #5f9410;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 30px;
+  box-shadow: inset 0 0 14px 14px transparent;
+  border: solid 4px transparent;
 }
