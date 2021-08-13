@@ -98,7 +98,10 @@ class App extends Component {
       ));
     } else {
       return (
-        <span style={{ display: "block", width: "100%", textAlign: "center" }}>
+        <span
+          className="empty-msg"
+          style={{ display: "block", width: "100%", textAlign: "center" }}
+        >
           Nenhum cliente adicionado
         </span>
       );
@@ -120,7 +123,7 @@ class App extends Component {
             </div>
           )}
           <div className="App-logo">
-            <img src={Logo} alt="Frexco" />
+            <img src={Logo} alt="Django" />
           </div>
           <AddCliente addCliente={this.addCliente} />
           <div className="App-ListaClientes">{this.renderClientes()}</div>

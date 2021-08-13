@@ -14,6 +14,8 @@
   font-size: 14px;
   width: 100%;
   text-align: center;
+  color: #fff;
+  font-family: monospace;
 }
 .App-box {
   max-width: 800px;
@@ -28,6 +30,10 @@
   border-radius: 20px;
   position: relative;
 }
+.empty-msg {
+  font-weight: bold;
+  color: #430087;
+}
 .App-logo {
   width: 100%;
   text-align: center;
@@ -35,11 +41,7 @@
 .App-logo img {
   width: 150px;
 }
-.App-title {
-  color: #89cd23;
-  font-size: 24px;
-  font-weight: 700;
-}
+
 .App-ListaClientes {
   height: 100%;
   max-height: 100%;
@@ -47,13 +49,20 @@
 }
 
 .App-cliente {
-  background: #89cd23;
+  background: #430087;
   margin-bottom: 10px;
   padding: 10px 20px;
   border-radius: 10px;
   display: grid;
   grid-template-columns: 40px 1fr 40px;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: #fff;
+}
+
+.App-cliente:hover {
+  background: #2d005a;
 }
 .Cliente-info {
   display: flex;
@@ -64,6 +73,9 @@
 }
 .Cliente-email {
   font-weight: bold;
+  overflow-x: hidden;
+  width: 100%;
+  display: block;
 }
 
 .App-btn-delete {
@@ -106,13 +118,13 @@
 ::-webkit-scrollbar-thumb {
   background: transparent;
   border-radius: 30px;
-  box-shadow: inset 0 0 14px 14px #89cd23;
+  box-shadow: inset 0 0 14px 14px #430087;
   border: solid 4px transparent;
   border-top: none;
   border-bottom: none;
 }
 ::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 14px 14px #5f9410;
+  box-shadow: inset 0 0 14px 14px #2d005a;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
