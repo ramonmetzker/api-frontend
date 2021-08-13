@@ -4,10 +4,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.footer-msg {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
 }
 .App-box {
   max-width: 800px;
   min-width: 400px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   /* grid-template-rows: 40px 100px 1fr; */
@@ -31,7 +42,7 @@
 }
 .App-ListaClientes {
   height: 100%;
-  max-height: 300px;
+  max-height: 100%;
   overflow: auto;
 }
 

@@ -43,7 +43,6 @@ class App extends Component {
   };
 
   handleAdd = (cliente) => {
-    console.log(cliente);
     if (validator.isEmail(cliente.email) && cpf.isValid(cliente.cpf)) {
       axios
         .post(`http://127.0.0.1:8000/api/clientes/`, cliente)
@@ -125,6 +124,12 @@ class App extends Component {
           </div>
           <AddCliente addCliente={this.addCliente} />
           <div className="App-ListaClientes">{this.renderClientes()}</div>
+          <div className="footer-msg">
+            feito por Ramon Metzker
+            <span role="img" aria-label="foguete">
+              🚀
+            </span>
+          </div>
         </div>
       </main>
     );

@@ -3,6 +3,7 @@ import "./AddCliente.css";
 
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
+import ReactTooltip from "react-tooltip";
 
 import * as cpf from "@fnando/cpf";
 
@@ -47,24 +48,19 @@ class AddCliente extends Component {
     return `${n1}.${n2}.${n3}-${d1}${dig(n1, n2, n3, d1)}`;
   };
 
-  handleChange = (e) => {
-    let { name, value } = e.target;
-
-    const clienteAtual = { ...this.state.clienteAtual, [name]: value };
-    if (this.state.aleatorio) {
-      this.setState({ clienteAtual: { email: clienteAtual.email } });
-    } else {
-      this.setState({ clienteAtual });
-    }
+  handleEmail = (e) => {
+    let value = e.target.value;
+    const clienteAtual = { ...this.state.clienteAtual, email: value };
+    this.setState({ clienteAtual });
   };
 
   handleCpfGen = () => {
     const cpfField = document.querySelector('input[name="cpf"]');
     const newCpf = cpf.generate();
-    console.log(newCpf);
     this.setState({ aleatorio: true });
     cpfField.value = newCpf;
-    this.setState({ clienteAtual: { cpf: newCpf.toString() } });
+    const clienteAtual = { ...this.state.clienteAtual, cpf: newCpf.toString() };
+    this.setState({ clienteAtual });
   };
 
   render() {
@@ -77,19 +73,23 @@ class AddCliente extends Component {
               type="text"
               name="email"
               className="AddCliente-email"
-              onChange={this.handleChange}
-              value={this.state.clienteAtual.email}
               placeholder="Email"
+              value={this.state.clienteAtual.email}
+              onChange={this.handleEmail}
             />
             <input
               type="text"
               name="cpf"
               className="AddCliente-cpf"
               maxLength="11"
-              defaultValue={this.state.clienteAtual.cpf}
               placeholder="CPF"
             />
-            <div className="CpfGen" onClick={() => this.handleCpfGen()}>
+            <div
+              className="CpfGen"
+              onClick={() => this.handleCpfGen()}
+              data-tip="Gerar CPF"
+            >
+              <ReactTooltip />
               <AutorenewIcon />
             </div>
           </div>
@@ -98,12 +98,11 @@ class AddCliente extends Component {
             <button
               className="AddCliente-btn"
               onClick={() => {
-                const newEmail = document.querySelector(
-                  'input[name="email"]'
-                ).value;
+                const newEmail = document
+                  .querySelector('input[name="email"]')
+                  .value.toString();
                 const cpf = document.querySelector('input[name="cpf"]').value;
                 this.setState({ clienteAtual: { email: newEmail, cpf: cpf } });
-                console.log(this.state);
                 this.props.addCliente(this.state.clienteAtual);
               }}
             >
