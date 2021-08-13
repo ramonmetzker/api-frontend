@@ -2,8 +2,8 @@ import "./App.css";
 import React, { Component } from "react";
 import axios from "axios";
 import AddCliente from "./components/AddCliente";
-import { cpf } from "cpf-cnpj-validator";
 import validator from "validator";
+import * as cpf from "@fnando/cpf";
 
 import ClearIcon from "@material-ui/icons/Clear";
 import { AccountCircle } from "@material-ui/icons";
@@ -28,42 +28,6 @@ class App extends Component {
     this.atualizaLista();
   }
 
-  checkCpf = (cpf) => {
-    let Soma = 0;
-    let Resto;
-    if (cpf === "00000000000") return false;
-    if (cpf === "11111111111") return false;
-    if (cpf === "22222222222") return false;
-    if (cpf === "33333333333") return false;
-    if (cpf === "44444444444") return false;
-    if (cpf === "55555555555") return false;
-    if (cpf === "66666666666") return false;
-    if (cpf === "77777777777") return false;
-    if (cpf === "88888888888") return false;
-    if (cpf === "99999999999") return false;
-
-    for (let i = 1; i <= 9; i++) {
-      // eslint-disable-next-line
-      Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-    }
-    Resto = (Soma * 10) % 11;
-    if (Resto === 10 || Resto === 11) Resto = 0;
-    // eslint-disable-next-line
-    if (Resto !== parseInt(cpf.substring(9, 10))) return false;
-
-    Soma = 0;
-    for (let i = 1; i <= 10; i++) {
-      // eslint-disable-next-line
-      Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-    }
-    Resto = (Soma * 10) % 11;
-
-    if (Resto === 10 || Resto === 11) Resto = 0;
-    // eslint-disable-next-line
-    if (Resto !== parseInt(cpf.substring(10, 11))) return false;
-    return true;
-  };
-
   atualizaLista = () => {
     axios
       .get("http://127.0.0.1:8000/api/clientes/")
@@ -79,7 +43,8 @@ class App extends Component {
   };
 
   handleAdd = (cliente) => {
-    if (validator.isEmail(cliente.email) && this.checkCpf(cliente.cpf)) {
+    console.log(cliente);
+    if (validator.isEmail(cliente.email) && cpf.isValid(cliente.cpf)) {
       axios
         .post(`http://127.0.0.1:8000/api/clientes/`, cliente)
         .then((res) => {
